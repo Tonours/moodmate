@@ -51,9 +51,6 @@ COPY lib lib
 
 COPY assets assets
 
-# compile assets
-RUN mix assets.deploy
-
 # Compile the release
 RUN mix compile
 
@@ -93,5 +90,12 @@ USER nobody
 # advised to add an init process such as tini via `apt-get install`
 # above and adding an entrypoint. See https://github.com/krallin/tini for details
 # ENTRYPOINT ["/tini", "--"]
+
+EXPOSE 4000
+
+# Add healthcheck
+# HEALTHCHECK --interval=5s --timeout=10s --start-period=5s --retries=10 CMD curl --fail -g 'http://0.0.0.0:4000' || exit 1
+
+CMD curl -g 'http://0.0.0.0:4000' || exit 1
 
 CMD ["/app/bin/server"]
