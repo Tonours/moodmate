@@ -1,0 +1,33 @@
+services:
+  pgsql:
+    image: 'postgres:15'
+    ports:
+      - '${PG_PORT:-5432}:5432'
+    environment:
+      POSTGRES_DB: '${PG_DB_NAME:-moodmate_dev}'
+      POSTGRES_USER: '${PG_USER:-postgres}'
+      POSTGRES_PASSWORD: '${PG_PASSWORD:-postgres}'
+    volumes:
+      - 'moodmatepgsql:/var/lib/postgresql/data'
+    networks:
+      - moodmate
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'pg_isready',
+          '-q',
+          '-d',
+          '${PG_DB_NAME:-moodmate}',
+          '-U',
+          '${PG_USER}',
+        ]
+      retries: 3
+      timeout: 5s
+
+networks:
+  moodmate:
+    driver: bridge
+
+volumes:
+  moodmatepgsql:
