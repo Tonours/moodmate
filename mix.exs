@@ -48,7 +48,8 @@ defmodule Moodmate.MixProject do
       {:absinthe, "~> 1.7"},
       {:absinthe_plug, "~> 1.5"},
       {:phoenix_pubsub, "~> 2.0"},
-      {:absinthe_phoenix, "~> 2.0.2"}
+      {:absinthe_phoenix, "~> 2.0.2"},
+      {:mix_audit, "~> 2.0", only: [:dev, :test], runtime: false}
     ]
   end
 
