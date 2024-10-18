@@ -18,12 +18,11 @@ defmodule MoodmateWeb.GraphQL.Subscriptions.PingedTest do
       # setup
       ref = push_doc(socket, subscription)
       assert_reply ref, :ok, %{subscriptionId: subscription_id}
-      conn = build_conn()
 
-      conn =
-        post(conn, "/api/graphql", %{
-          "query" => @ping_query
-        })
+      build_conn()
+      |> post("/api/graphql", %{
+        "query" => @ping_query
+      })
 
       # no need to check pong result, we already did in previous test
       # assert subscription has been sent to us
