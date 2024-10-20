@@ -26,9 +26,11 @@ RUN apt-get update -y && apt-get install -y build-essential git \
 
 ARG AUTH_TOKEN_SALT
 ARG SECRET_KEY_BASE
+ARG PHX_HOST
 
 ENV AUTH_TOKEN_SALT=${AUTH_TOKEN_SALT}
 ENV SECRET_KEY_BASE=${SECRET_KEY_BASE}
+ENV PHX_HOST=${PHX_HOST}
 
 # prepare build dir
 WORKDIR /app
