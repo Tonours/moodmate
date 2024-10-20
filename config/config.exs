@@ -9,7 +9,7 @@ import Config
 
 config :moodmate,
   ecto_repos: [Moodmate.Repo],
-  generators: [timestamp_type: :utc_datetime]
+  generators: [timestamp_type: :utc_datetime, binary_id: true]
 
 # Configures the endpoint
 config :moodmate, MoodmateWeb.Endpoint,
@@ -20,7 +20,8 @@ config :moodmate, MoodmateWeb.Endpoint,
     layout: false
   ],
   pubsub_server: Moodmate.PubSub,
-  live_view: [signing_salt: "XfH8psH4"]
+  live_view: [signing_salt: "XfH8psH4"],
+  auth_token_salt: System.get_env("AUTH_TOKEN_SALT")
 
 # Configures the mailer
 #

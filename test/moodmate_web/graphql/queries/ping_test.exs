@@ -3,7 +3,9 @@ defmodule MoodmateWeb.GraphQL.Queries.PingTest do
 
   @ping_query """
     {
-      ping
+      ping {
+        message
+      }
     }
   """
 
@@ -15,7 +17,7 @@ defmodule MoodmateWeb.GraphQL.Queries.PingTest do
         })
 
       assert json_response(conn, 200) == %{
-               "data" => %{"ping" => "pong"}
+               "data" => %{"ping" => %{"message" => "pong"}}
              }
     end
   end

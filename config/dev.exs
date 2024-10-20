@@ -24,7 +24,8 @@ config :moodmate, MoodmateWeb.Endpoint,
   code_reloader: true,
   debug_errors: true,
   secret_key_base: "116n/4QiCw4FSgGWnYrnjfyg4K1lrckYJuaS8YebediQBwk8PvFp6Wa31/0GhM2B",
-  watchers: []
+  watchers: [],
+  auth_token_salt: "salt_value"
 
 # ## SSL Support
 #

@@ -3,6 +3,8 @@ defmodule MoodmateWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+
+    plug MoodmateWeb.Plugs.SetCurrentUser
   end
 
   scope "/api" do

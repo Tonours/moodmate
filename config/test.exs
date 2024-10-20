@@ -18,7 +18,8 @@ config :moodmate, Moodmate.Repo,
 config :moodmate, MoodmateWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
   secret_key_base: "KCreYv8Ml3uO3bgFLbc+hm2te63gWrS0t7tIETf633TvYXiSqZ5hurYrYrdscUUx",
-  server: false
+  server: false,
+  auth_token_salt: "salt_key_test"
 
 # In test we don't send emails
 config :moodmate, Moodmate.Mailer, adapter: Swoosh.Adapters.Test

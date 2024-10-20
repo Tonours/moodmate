@@ -1,27 +1,28 @@
 defmodule MoodmateWeb.GraphQL.Schema do
   use Absinthe.Schema
 
+  alias MoodmateWeb.GraphQL
+
   import_types Absinthe.Type.Custom
+  import_types GraphQL.Mutations
+  import_types GraphQL.Queries
+  import_types GraphQL.Subscriptions
+  import_types GraphQL.Types
 
   def context(ctx) do
     Map.put(ctx, :pubsub, MoodmateWeb.Endpoint)
   end
 
   query do
-    field :ping, :string do
-      resolve(fn _, _ ->
-        # Send a message to the subscription pinged topic
-        Absinthe.Subscription.publish(MoodmateWeb.Endpoint, "pong", pinged: "*")
-        {:ok, "pong"}
-      end)
-    end
+    import_fields :ping_queries
+    import_fields :session_queries
+  end
+
+  mutation do
+    import_fields :session_mutations
   end
 
   subscription do
-    field :pinged, :string do
-      config(fn _, _ ->
-        {:ok, topic: "*"}
-      end)
-    end
+    import_fields :ping_subscriptions
   end
 end

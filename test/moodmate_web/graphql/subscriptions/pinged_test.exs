@@ -3,7 +3,9 @@ defmodule MoodmateWeb.GraphQL.Subscriptions.PingedTest do
 
   @ping_query """
     {
-      ping
+      ping {
+        message
+      }
     }
   """
 
@@ -11,7 +13,9 @@ defmodule MoodmateWeb.GraphQL.Subscriptions.PingedTest do
     test "it should return pong after a ping query", %{socket: socket} do
       subscription = """
         subscription {
-          pinged
+          pinged {
+            message
+          }
         }
       """
 
@@ -29,7 +33,9 @@ defmodule MoodmateWeb.GraphQL.Subscriptions.PingedTest do
       expected = %{
         result: %{
           data: %{
-            "pinged" => "pong"
+            "pinged" => %{
+              "message" => "pong"
+            }
           }
         },
         subscriptionId: subscription_id
