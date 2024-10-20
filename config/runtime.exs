@@ -48,13 +48,6 @@ if config_env() == :prod do
       You can generate one by calling: mix phx.gen.secret
       """
 
-  auth_token_salt =
-    System.get_env("AUTH_TOKEN_SALT") ||
-      raise """
-      environment variable AUTH_TOKEN_SALT is missing.
-      You can generate one by calling: mix phx.gen.secret
-      """
-
   host = System.get_env("PHX_HOST") || "example.com"
   port = String.to_integer(System.get_env("PORT") || "4000")
 
@@ -70,8 +63,7 @@ if config_env() == :prod do
       ip: {0, 0, 0, 0, 0, 0, 0, 0},
       port: port
     ],
-    secret_key_base: secret_key_base,
-    auth_token_salt: auth_token_salt
+    secret_key_base: secret_key_base
 
   # ## SSL Support
   #
