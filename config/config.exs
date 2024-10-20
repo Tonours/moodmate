@@ -20,8 +20,7 @@ config :moodmate, MoodmateWeb.Endpoint,
     layout: false
   ],
   pubsub_server: Moodmate.PubSub,
-  live_view: [signing_salt: "XfH8psH4"],
-  auth_token_salt: System.get_env("AUTH_TOKEN_SALT")
+  live_view: [signing_salt: "XfH8psH4"]
 
 # Configures the mailer
 #
