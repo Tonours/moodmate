@@ -50,7 +50,7 @@ defmodule Moodmate.MixProject do
       {:phoenix_pubsub, "~> 2.0"},
       {:absinthe_phoenix, "~> 2.0.2"},
       {:mix_audit, "~> 2.0", only: [:dev, :test], runtime: false},
-      {:argon2_elixir, "~> 4.1"}
+      {:pbkdf2_elixir, "~> 2.3"}
     ]
   end
 

@@ -30,7 +30,7 @@ defmodule Moodmate.AccountsTest do
       assert {:ok, %User{} = user} = Accounts.create_user(valid_attrs)
       assert user.email == "test@example.com"
       assert user.username == "testuser"
-      assert Argon2.verify_pass("password123", user.password_hash)
+      assert Pbkdf2.verify_pass("password123", user.password_hash)
     end
 
     test "create_user/1 with invalid data returns error changeset" do
@@ -49,7 +49,7 @@ defmodule Moodmate.AccountsTest do
       assert {:ok, %User{} = user} = Accounts.update_user(user, update_attrs)
       assert user.email == "updated@example.com"
       assert user.username == "updateduser"
-      assert Argon2.verify_pass("newpassword123", user.password_hash)
+      assert Pbkdf2.verify_pass("newpassword123", user.password_hash)
     end
 
     test "update_user/2 with invalid data returns error changeset" do

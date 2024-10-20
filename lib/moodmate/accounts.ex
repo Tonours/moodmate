@@ -15,7 +15,7 @@ defmodule Moodmate.Accounts do
     user = Repo.get_by(User, email: email)
 
     with %{password_hash: password_hash} <- user,
-         true <- Argon2.verify_pass(password, password_hash) do
+         true <- Pbkdf2.verify_pass(password, password_hash) do
       {:ok, user}
     else
       _ -> :error
